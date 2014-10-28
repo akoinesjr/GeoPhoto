@@ -2,9 +2,8 @@ Rails.application.routes.draw do
 
   root "pages#index"
 
-  resources :users do
-    resources :photos
-  end
+  resources :users
+  resources :photos, only: [:create, :destroy]
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'

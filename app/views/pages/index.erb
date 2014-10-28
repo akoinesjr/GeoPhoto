@@ -1,4 +1,4 @@
-<h1>ShittyPhotoSharer</h1>
+<h1>GeoPhoto</h1>
 
 <p>Welcome to ShittyPhotoSharer!</p>
 
@@ -9,4 +9,12 @@
 <%= link_to 'Sign In', login_path %>
 <% else %>
   <p>What's up, <%= current_user.username %>?</p>
+
+  <h3>Add a new photo</h3>
+  <%= form_for(@photo) do |f| %>
+    <div>
+      <%= f.text_field :title, placeholder: "Choose a title for this photo" %>
+    </div>
+    <%= f.submit "Add Photo" %>
+  <% end %>
 <% end %>

@@ -1,1 +1,10 @@
 This is <%= User.find(params[:id]).username %>'s show page.
+
+<% if User.find(params[:id]).photos.any? %>
+<h3>Photos</h3>
+<ul>
+<% User.find(params[:id]).photos.each do |photo| %>
+  <li><%= photo %></li>
+<% end %>
+</ul>
+<% end %>
