@@ -1,6 +1,6 @@
 <h1>GeoPhoto</h1>
 
-<p>Welcome to ShittyPhotoSharer!</p>
+<p>Welcome to GeoPhoto!</p>
 
 
 
@@ -11,10 +11,23 @@
   <p>What's up, <%= current_user.username %>?</p>
 
   <h3>Add a new photo</h3>
-  <%= form_for(@photo) do |f| %>
+  <%= form_for(@photo, html: {multipart: true} ) do |f| %>
     <div>
       <%= f.text_field :title, placeholder: "Choose a title for this photo" %>
     </div>
     <%= f.submit "Add Photo" %>
+    <span>
+      <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
+    </span>
   <% end %>
+
+  <script type="text/javascript">
+    $('#photo_image').bind('change', function() {
+    size = this.files[0].size/1024/1024;
+    if (size > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+
+  </script>
 <% end %>

@@ -39,3 +39,5 @@ gem 'spring',        group: :development
 
 
 gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
