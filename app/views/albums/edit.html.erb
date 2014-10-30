@@ -1,0 +1,10 @@
+Edit album:
+
+<%= form_for([@user, @album]) do |f| %>
+  <div>
+    <%= f.text_field :title, placeholder: "Enter album title here." %>
+  </div>
+  <%= f.submit "Edit album!" %>
+<% end %>
+
+<%= link_to "Delete Album", user_album_path, method: :delete, data: { confirm: "Are you sure you want to delete this album?" } %>

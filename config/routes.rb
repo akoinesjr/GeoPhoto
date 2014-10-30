@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root "pages#index"
 
-  resources :users
+  resources :users do
+    resources :albums
+  end
   resources :photos, only: [:create, :destroy]
 
   get    'login'   => 'sessions#new'

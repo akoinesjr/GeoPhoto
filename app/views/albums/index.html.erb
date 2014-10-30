@@ -1,0 +1,8 @@
+USER ALBUMS!
+<% User.find(params[:user_id]).albums.each do |album| %>
+ <div> <%= link_to album.title, user_album_path(id: album.id) %> </div>
+<% end %>
+
+<div>
+  <%= link_to "Create a new album", new_user_album_path %>
+</div>

@@ -2,9 +2,9 @@ class CreatePhotos < ActiveRecord::Migration
   def change
     create_table :photos do |t|
       t.string :title
-      t.references :user, index: true
+      t.references :album, index: true
       t.timestamps
     end
-    add_index :photos, [:user_id, :created_at]
+    #add_index :photos, [:album_id, :created_at]
   end
 end

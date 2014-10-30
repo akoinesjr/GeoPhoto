@@ -1,17 +1,5 @@
-This is <%= User.find(params[:id]).username %>'s show page.
+This is <%= @user.username %>'s show page.
 
-<% if User.find(params[:id]).photos.any? %>
-  <h3>Photos</h3>
-  <ul>
-  <% User.find(params[:id]).photos.each do |photo| %>
-    <div>
-      <%= photo.title %>
-      <%= image_tag photo.image.url %>
-
-      <% if current_user?(photo.user) %>
-      <%= link_to "delete", photo, method: :delete, data: { confirm: "Are you sure you want to delete this photo?" }, title: photo.title %>
-      <% end %>
-    </div>
-  <% end %>
-  </ul>
-<% end %>
+<div>
+  <%= link_to "View Albums", user_albums_path(user_id: @user.id) %>
+</div>

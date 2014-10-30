@@ -1,0 +1,8 @@
+Create a new album:
+
+<%= form_for([:user, @album]) do |f| %>
+  <div>
+    <%= f.text_field :title, placeholder: "Enter album title here." %>
+  </div>
+  <%= f.submit "Create album!" %>
+<% end %>
