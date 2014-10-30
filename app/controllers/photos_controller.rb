@@ -5,9 +5,10 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = current_user.photos.build(photo_params)
+    @album = Album.find(params[:album_id])
+    @photo = @album.photos.build(photo_params)
     if @photo.save
-      redirect_to root_url
+      redirect_to album_path(id: params[:album_id])
     else
       render 'pages/index'
     end
