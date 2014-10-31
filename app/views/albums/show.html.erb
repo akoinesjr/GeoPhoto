@@ -8,6 +8,7 @@
 
     <% @album.photos.each do |photo| %>
       <%= photo.title %>
+      <%= image_tag photo.image %>
     <% end %>
     <h3>Add Photo:</h3>
     <%= form_for [@album, @photo], html: { multipart: true } do |f| %>
