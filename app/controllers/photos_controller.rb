@@ -2,12 +2,13 @@ class PhotosController < ApplicationController
   before_action :correct_user, only: :destroy
 
   def index
+    @photos = Photo.find_by_album_id(params[:id])
   end
 
   def create
-    @photo = current_user.photos.build(photo_params)
+    @photo = Photo.new(photo_params)
     if @photo.save
-      redirect_to root_url
+      redirect_to root_path
     else
       render 'pages/index'
     end

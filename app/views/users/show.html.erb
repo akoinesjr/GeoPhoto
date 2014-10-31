@@ -1,5 +1,10 @@
-This is <%= @user.username %>'s show page.
-
-<div>
-  <%= link_to "View Albums", user_albums_path(user_id: @user.id) %>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <h3><%= @user.username %>'s profile.</h3>
+    <div>
+      <%= link_to "View Albums", user_albums_path(user_id: @user.id), class: "btn btn-primary btn-lg" %>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
 </div>
