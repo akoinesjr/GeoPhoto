@@ -1,17 +1,17 @@
+
 <h1>GeoPhoto</h1>
 
+
 <p>Welcome to GeoPhoto!</p>
-
-
-
 <% if !logged_in? %>
 <%= link_to 'Sign Up', new_user_path %>
 <%= link_to 'Sign In', login_path %>
 <% else %>
-  <p>What's up, <%= current_user.username %>?</p>
+<p>What's up, <%= current_user.username %>?</p>
 
-  <div>
-    <%= link_to "View Albums", user_albums_path(user_id: current_user.id) %>
-  </div>
+<div>
+  <%= link_to "View Albums", user_albums_path(user_id: current_user.id) %>
+</div>
 
 <% end %>
+

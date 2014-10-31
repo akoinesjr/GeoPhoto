@@ -1,32 +1,3 @@
-<div>
-  Album title: <%= @album.title %>
-</div>
+Album title: <%= @album.title %>
 
-<div>
-  <%= link_to "Edit Album", edit_album_path %>
-</div>
-
-<%= form_for([@album, @photo], html: { multipart: true }) do |f| %>
-  <div>
-    <%= f.text_field :title, placeholder: "Photo title" %>
-  </div>
-  <%= f.submit "Add Photo" %>
-  <span>
-    <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
-  </span>
-<% end %>
-
- <script type="text/javascript">
- $('#photo_image').bind('change', function() {
- size = this.files[0].size/1024/1024;
- if (size > 5) {
- alert('Maximum file size is 5MB. Please choose a smaller file.');
- }
- });
- </script>
-
-<% @album.photos.each do |photo| %>
-  <%= photo.id %>
-  <%= image_tag photo.image %>
-  <%= photo.title %><br>
-<% end %>
+<%= link_to "Edit Album", edit_user_album_path %>

@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
   def index
-    @albums=User.find(current_user).albums
+    @albums=User.find(params[:user_id]).albums
   end
 
   def new
@@ -10,18 +10,19 @@ class AlbumsController < ApplicationController
   def create
     @album = current_user.albums.build(album_params)
     if @album.save
-      redirect_to user_albums_path
+      redirect_to user_albums_path(user_id: params[:user_id])
     else
       render 'new'
     end
   end
 
   def show
+    @user = User.find(params[:user_id])
     @album = Album.find(params[:id])
-    @photo = Photo.new
   end
 
   def edit
+    @user = User.find(params[:user_id])
     @album = Album.find(params[:id])
   end
 
