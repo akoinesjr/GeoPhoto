@@ -1,17 +1,19 @@
+<div class="jumbotron">
+  <div class='container'>
+    <h1>GeoPhoto</h1>
 
-<h1>GeoPhoto</h1>
 
+    <p>What's up, <%= current_user.username %>? Welcome to GeoPhoto!</p>
+    <p>GeoPhoto allows you to store and view your photos, organized by album.</p>
+    <p>Coming soon: Geolocation tagging, multiple file upload.</p>
+    <% if !logged_in? %>
+    <%= link_to 'Sign Up', new_user_path %>
+    <%= link_to 'Sign In', login_path %>
+    <% else %>
+    <%= link_to "View Albums", user_albums_path(user_id: current_user.id), class: "btn btn-primary btn-lg" %>
+    </div>
 
-<p>Welcome to GeoPhoto!</p>
-<% if !logged_in? %>
-<%= link_to 'Sign Up', new_user_path %>
-<%= link_to 'Sign In', login_path %>
-<% else %>
-<p>What's up, <%= current_user.username %>?</p>
+    <% end %>
 
-<div>
-  <%= link_to "View Albums", user_albums_path(user_id: current_user.id) %>
+  </div>
 </div>
-
-<% end %>
-
