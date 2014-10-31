@@ -22,16 +22,14 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:user_id])
     @album = Album.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:user_id])
     @album = Album.find(params[:id])
     @album.update(album_params)
 
-    redirect_to user_album_path
+    redirect_to album_path
   end
 
   def destroy
