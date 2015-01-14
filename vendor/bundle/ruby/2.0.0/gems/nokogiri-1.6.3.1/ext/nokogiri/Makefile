@@ -11,12 +11,12 @@ ECHO = $(ECHO1:0=@echo)
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0
+topdir = /opt/rubies/2.0.0-p451/include/ruby-2.0.0
 hdrdir = $(topdir)
-arch_hdrdir = /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0/universal-darwin14
+arch_hdrdir = /opt/rubies/2.0.0-p451/include/ruby-2.0.0/x86_64-darwin14.0.0
 PATH_SEPARATOR = :
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr
+prefix = /opt/rubies/2.0.0-p451
 rubysitearchprefix = $(rubylibprefix)/$(sitearch)
 rubyarchprefix = $(rubylibprefix)/$(arch)
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
@@ -30,9 +30,9 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = ./.gem.20150108-28043-1495jce
-sitelibdir = ./.gem.20150108-28043-1495jce
-sitedir = $(DESTDIR)/Library/Ruby/Site
+sitearchdir = ./.gem.20150108-10710-1925jk7
+sitelibdir = ./.gem.20150108-10710-1925jk7
+sitedir = $(rubylibprefix)/site_ruby
 rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
 sitearchincludedir = $(includedir)/$(sitearch)
@@ -40,20 +40,20 @@ archincludedir = $(includedir)/$(arch)
 sitearchlibdir = $(libdir)/$(sitearch)
 archlibdir = $(libdir)/$(arch)
 ridir = $(datarootdir)/$(RI_BASE_NAME)
-mandir = $(DESTDIR)/usr/share/man
+mandir = $(datarootdir)/man
 localedir = $(datarootdir)/locale
 libdir = $(exec_prefix)/lib
 psdir = $(docdir)
 pdfdir = $(docdir)
 dvidir = $(docdir)
 htmldir = $(docdir)
-infodir = $(DESTDIR)/usr/share/info
+infodir = $(datarootdir)/info
 docdir = $(datarootdir)/doc/$(PACKAGE)
 oldincludedir = /usr/include
 includedir = $(prefix)/include
 localstatedir = $(prefix)/var
 sharedstatedir = $(prefix)/com
-sysconfdir = $(DESTDIR)/Library/Ruby/Site
+sysconfdir = $(prefix)/etc
 datadir = $(datarootdir)
 datarootdir = $(prefix)/share
 libexecdir = $(exec_prefix)/libexec
@@ -62,11 +62,11 @@ bindir = $(exec_prefix)/bin
 archdir = $(rubyarchdir)
 
 
-CC = xcrun clang
-CXX = xcrun clang++
-LIBRUBY = $(LIBRUBY_SO)
+CC = /usr/bin/cc
+CXX = c++
+LIBRUBY = $(LIBRUBY_A)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
-LIBRUBYARG_SHARED = -l$(RUBY_SO_NAME)
+LIBRUBYARG_SHARED = 
 LIBRUBYARG_STATIC = -l$(RUBY_SO_NAME)-static
 empty =
 OUTFLAG = -o $(empty)
@@ -74,18 +74,18 @@ COUTFLAG = -o $(empty)
 
 RUBY_EXTCONF_H = 
 cflags   =  $(optflags) $(debugflags) $(warnflags)
-optflags = 
-debugflags = -g
-warnflags = 
-CCDLFLAGS = 
-CFLAGS   = $(CCDLFLAGS)  -g -Os -pipe -DHAVE_GCC_SYNC_BUILTINS -I/opt/boxen/homebrew/include -Wno-error=unused-command-line-argument-hard-error-in-future -DNOKOGIRI_USE_PACKAGED_LIBRARIES $(ARCH_FLAG)
+optflags = -O3 -fno-fast-math
+debugflags = -ggdb3
+warnflags = -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wshorten-64-to-32 -Wimplicit-function-declaration
+CCDLFLAGS = -fno-common
+CFLAGS   = $(CCDLFLAGS) -I/opt/boxen/homebrew/include -I/opt/X11/include -march=core2 -O3 -O3 -Wno-error=shorten-64-to-32  -pipe -I/opt/boxen/homebrew/include -Wno-error=unused-command-line-argument-hard-error-in-future -DNOKOGIRI_USE_PACKAGED_LIBRARIES $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
-CPPFLAGS = -DHAVE_ICONV_H -DHAVE_XMLPARSEDOC -DHAVE_XSLTPARSESTYLESHEETDOC -DHAVE_EXSLTFUNCREGISTER -DHAVE_XMLHASFEATURE -DHAVE_XMLFIRSTELEMENTCHILD -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETPARSERSTRUCTUREDERRORS -I/Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14/libxslt/1.1.28/include -I/Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14/libxml2/2.8.0/include/libxml2 -I/usr/include -I/Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14/libxml2/2.8.0/include/libxml2 -I/usr/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags) -DNOKOGIRI_LIBXML2_PATH\=\"/Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14/libxml2/2.8.0\" -DNOKOGIRI_LIBXSLT_PATH\=\"/Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14/libxslt/1.1.28\"
-CXXFLAGS = $(CCDLFLAGS) $(ARCH_FLAG) -g -Os -pipe  $(ARCH_FLAG)
-ldflags  = -L. -L/usr/local/lib
+CPPFLAGS = -DHAVE_ICONV_H -DHAVE_XMLPARSEDOC -DHAVE_XSLTPARSESTYLESHEETDOC -DHAVE_EXSLTFUNCREGISTER -DHAVE_XMLHASFEATURE -DHAVE_XMLFIRSTELEMENTCHILD -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETPARSERSTRUCTUREDERRORS -I/Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14.0.0/libxslt/1.1.28/include -I/Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14.0.0/libxml2/2.8.0/include/libxml2 -I/usr/include -I/Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14.0.0/libxml2/2.8.0/include/libxml2 -I/usr/include -I/opt/rubies/2.0.0-p451/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags) -DNOKOGIRI_LIBXML2_PATH\=\"/Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14.0.0/libxml2/2.8.0\" -DNOKOGIRI_LIBXSLT_PATH\=\"/Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14.0.0/libxslt/1.1.28\"
+CXXFLAGS = $(CCDLFLAGS) $(cxxflags) $(ARCH_FLAG)
+ldflags  = -L. -L/opt/rubies/2.0.0-p451/lib -L/opt/boxen/homebrew/lib -L/opt/X11/lib
 dldflags = -Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress 
-ARCH_FLAG =  -arch x86_64 -arch i386
+ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
 LDSHARED = $(CC) -dynamic -bundle
 LDSHAREDXX = $(CXX) -dynamic -bundle
@@ -93,13 +93,13 @@ AR = ar
 EXEEXT = 
 
 RUBY_INSTALL_NAME = ruby
-RUBY_SO_NAME = ruby.2.0.0
+RUBY_SO_NAME = ruby
 RUBYW_INSTALL_NAME = 
 RUBY_VERSION_NAME = $(RUBY_BASE_NAME)-$(ruby_version)
 RUBYW_BASE_NAME = rubyw
 RUBY_BASE_NAME = ruby
 
-arch = universal-darwin14
+arch = x86_64-darwin14.0.0
 sitearch = $(arch)
 ruby_version = 2.0.0
 ruby = $(bindir)/ruby
@@ -120,8 +120,8 @@ TOUCH = exit >
 
 preload = 
 
-libpath = . $(libdir) /Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14/libxml2/2.8.0/lib /Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14/libxslt/1.1.28/lib /usr/lib
-LIBPATH =  -L. -L$(libdir) -L/Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14/libxml2/2.8.0/lib -L/Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14/libxslt/1.1.28/lib -L/usr/lib
+libpath = . $(libdir) /Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14.0.0/libxml2/2.8.0/lib /Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14.0.0/libxslt/1.1.28/lib /usr/lib
+LIBPATH =  -L. -L$(libdir) -L/Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14.0.0/libxml2/2.8.0/lib -L/Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14.0.0/libxslt/1.1.28/lib -L/usr/lib
 DEFFILE = 
 
 CLEANFILES = mkmf.log
@@ -132,7 +132,7 @@ extout =
 extout_prefix = 
 target_prefix = /nokogiri
 LOCAL_LIBS = 
-LIBS = $(LIBRUBYARG_SHARED) /Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14/libxslt/1.1.28/lib/libexslt.a -lm -liconv -lpthread -lz /Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14/libxml2/2.8.0/lib/libxml2.a /Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14/libxslt/1.1.28/lib/libxslt.a -lm -liconv -lpthread -lz /Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14/libxml2/2.8.0/lib/libxml2.a -llzma -lpthread -ldl -lobjc  
+LIBS =  /Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14.0.0/libxslt/1.1.28/lib/libexslt.a -lm -liconv -lpthread -lz /Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14.0.0/libxml2/2.8.0/lib/libxml2.a /Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14.0.0/libxslt/1.1.28/lib/libxslt.a -lm -liconv -lpthread -lz /Users/andrew/Development/GeoPhoto/vendor/bundle/ruby/2.0.0/gems/nokogiri-1.6.3.1/ports/x86_64-apple-darwin14.0.0/libxml2/2.8.0/lib/libxml2.a -llzma -lpthread -ldl -lobjc  
 ORIG_SRCS = html_document.c html_element_description.c html_entity_lookup.c html_sax_parser_context.c html_sax_push_parser.c nokogiri.c xml_attr.c xml_attribute_decl.c xml_cdata.c xml_comment.c xml_document.c xml_document_fragment.c xml_dtd.c xml_element_content.c xml_element_decl.c xml_encoding_handler.c xml_entity_decl.c xml_entity_reference.c xml_io.c xml_libxml2_hacks.c xml_namespace.c xml_node.c xml_node_set.c xml_processing_instruction.c xml_reader.c xml_relax_ng.c xml_sax_parser.c xml_sax_parser_context.c xml_sax_push_parser.c xml_schema.c xml_syntax_error.c xml_text.c xml_xpath_context.c xslt_stylesheet.c
 SRCS = $(ORIG_SRCS) 
 OBJS = html_document.o html_element_description.o html_entity_lookup.o html_sax_parser_context.o html_sax_push_parser.o nokogiri.o xml_attr.o xml_attribute_decl.o xml_cdata.o xml_comment.o xml_document.o xml_document_fragment.o xml_dtd.o xml_element_content.o xml_element_decl.o xml_encoding_handler.o xml_entity_decl.o xml_entity_reference.o xml_io.o xml_libxml2_hacks.o xml_namespace.o xml_node.o xml_node_set.o xml_processing_instruction.o xml_reader.o xml_relax_ng.o xml_sax_parser.o xml_sax_parser_context.o xml_sax_push_parser.o xml_schema.o xml_syntax_error.o xml_text.o xml_xpath_context.o xslt_stylesheet.o

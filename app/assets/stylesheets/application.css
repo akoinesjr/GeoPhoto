@@ -18,3 +18,12 @@
 .vert-spacing{
   margin: 10px 0px;
 }
+
+.photo{
+  display: block;
+  margin: 5px;
+  border: 2px solid;
+  border-radius: 5px;
+  background-color: lightgrey;
+  padding: 5px;
+}

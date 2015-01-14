@@ -5,11 +5,13 @@
     <h3>Album title: <%= @album.title %></h3>
 
     <%= link_to "Edit Album", edit_album_path, class: "btn btn-primary" %>
-
-    <% @album.photos.each do |photo| %>
-      <%= photo.title %>
-      <%= image_tag photo.image %>
-    <% end %>
+      <% @album.photos.each do |photo| %>
+        <div class="photo">
+          <%= photo.title %>
+          <%= image_tag photo.image %>
+        </div>
+      <% end %>
+    
     <h3>Add Photo:</h3>
     <%= form_for [@album, @photo], html: { multipart: true } do |f| %>
       <div class="form-group">
