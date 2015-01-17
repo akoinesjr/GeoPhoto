@@ -10,6 +10,7 @@
           <%= image_tag photo.image %><br>
           <%= photo.title %><br>
           <%= link_to "View Photo Details", album_photo_path(@album.id, photo.id) %>
+          <%= link_to "Edit Photo", edit_album_photo_path(@album.id, photo.id) %>
         </div>
       <% end %>
     

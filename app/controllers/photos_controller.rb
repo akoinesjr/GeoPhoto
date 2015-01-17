@@ -9,6 +9,10 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
   end
 
+  def edit
+    @photo = Photo.find(params[:id])
+  end
+
   def create
     @photo = Photo.new(photo_params)
     @photo.album_id = params[:album_id]
