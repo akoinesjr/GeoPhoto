@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
-  before_action :correct_user, only: :destroy
+  #Need to reimplement this
+  #before_action :correct_user, only: :destroy
 
   def index
     @photos = Photo.find_by_album_id(params[:id])
@@ -24,6 +25,7 @@ class PhotosController < ApplicationController
   end
 
   def destroy
+    @photo = Photo.find(params[:id])
     @photo.destroy
     flash[:success] = "Photo deleted!"
     redirect_to root_url
