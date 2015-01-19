@@ -28,7 +28,7 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
     @photo.destroy
     flash[:success] = "Photo deleted!"
-    redirect_to root_url
+    redirect_to album_photos_path(@photo.album_id)
   end
 
   private
