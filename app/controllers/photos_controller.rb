@@ -12,6 +12,18 @@ class PhotosController < ApplicationController
 
   def edit
     @photo = Photo.find(params[:id])
+    @album = Album.find(@photo.album)
+  end
+
+  def update     
+    @photo = Photo.find(params[:id])
+    puts @photo
+
+    if @photo.update_attributes(photo_params)
+      redirect_to album_photo_path
+    else
+      puts "Failed to update!"
+    end
   end
 
   def create
@@ -34,7 +46,7 @@ class PhotosController < ApplicationController
   private
 
     def photo_params
-      params.require(:photo).permit(:title, :image)
+      params.require(:photo).permit(:title, :image, :longitude, :latitude)
     end
 
     def correct_user

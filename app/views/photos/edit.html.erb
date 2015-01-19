@@ -1,2 +1,9 @@
 This is the photos edit view
 <%= image_tag @photo.image %><br>
+
+<%= form_for [@album, @photo] do |f| %>
+  Latitude: <%= f.number_field :latitude %><br>
+  Longitude: <%= f.number_field :longitude %><br>
+<%= f.submit %>
+
+<% end %>

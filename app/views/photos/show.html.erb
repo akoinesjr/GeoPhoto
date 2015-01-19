@@ -1,2 +1,10 @@
 This is the photos show view
 <%= image_tag @photo.image %><br>
+
+<% if @photo.latitude != nil && @photo.longitude != nil %>
+	<%= "Location: Lat: " + @photo.latitude.to_s + " , Long: " + @photo.longitude.to_s %>
+<% else %>
+	<%= "Location unavailable." %>
+<% end %>
+<br>
+<%= link_to "Edit Photo", edit_album_photo_path %>
