@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  #map-canvas {
+    width: 500px;
+    height: 400px;
+  }
+  </style>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+</head>
+<body>
+Select a point on the map to set longitude and latitude. 
+<div id="map-canvas"></div>
+  
+  <script>
+
+  var infowindow = null;
+
+  function initialize() {
+
+    function addMarkers(){
+      for (i=0; i < locations.length; i++){
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(locations[i][0],locations[i][1]),
+          map: map,
+          draggable: true,
+          html: (i+1).toString()
+        })
+        markers.push(marker)  
+         document.getElementById('photo_latitude').value=parseFloat(locations[0][0]).toFixed(2);
+         document.getElementById('photo_longitude').value=parseFloat(locations[0][1]).toFixed(2);   
+       }
+    
+      for (var i=0; i < markers.length; i++){
+        var marker = markers[i];
+        google.maps.event.addListener(marker, 'click', function(){
+         infowindow.setContent(this.html);
+         infowindow.open(map, this)
+
+       });
+      }
+    }
+
+    center = new google.maps.LatLng(37.77, -122.43)
+    var mapCanvas = document.getElementById('map-canvas');
+    var mapOptions = {
+      center: center,
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    var map = new google.maps.Map(mapCanvas, mapOptions)
+    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+    var markers = []
+    var locations = []  
+
+    infowindow = new google.maps.InfoWindow({
+      content: "test"
+    });
+    
+    addMarkers();
+
+    google.maps.event.addListener(map, 'click', function( event ){
+      if(locations.length < 1){
+        locations.push([event.latLng.lat(), event.latLng.lng()]);
+        addMarkers();
+
+        google.maps.event.addListener(markers[0], 'dragend', function(event) {
+          document.getElementById('photo_latitude').value=parseFloat(event.latLng.lat()).toFixed(2);
+          document.getElementById('photo_longitude').value=parseFloat(event.latLng.lng()).toFixed(2);
+        });
+      }
+
+    });
+
+  } 
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+console.log(document.getElementById('photo_longitude'));
+
+
+</script>
+</body>
+</html>
