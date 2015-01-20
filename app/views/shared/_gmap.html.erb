@@ -28,8 +28,8 @@ Select a point on the map to set longitude and latitude.
           html: (i+1).toString()
         })
         markers.push(marker)  
-         document.getElementById('photo_latitude').value=parseFloat(locations[0][0]).toFixed(2);
-         document.getElementById('photo_longitude').value=parseFloat(locations[0][1]).toFixed(2);   
+         document.getElementById('photo_latitude').value=locations[0][0].toFixed(2);
+         document.getElementById('photo_longitude').value=locations[0][1].toFixed(2);   
        }
     
       for (var i=0; i < markers.length; i++){
@@ -67,8 +67,8 @@ Select a point on the map to set longitude and latitude.
         addMarkers();
 
         google.maps.event.addListener(markers[0], 'dragend', function(event) {
-          document.getElementById('photo_latitude').value=parseFloat(event.latLng.lat()).toFixed(2);
-          document.getElementById('photo_longitude').value=parseFloat(event.latLng.lng()).toFixed(2);
+          document.getElementById('photo_latitude').value=event.latLng.lat().toFixed(2);
+          document.getElementById('photo_longitude').value=event.latLng.lng().toFixed(2);
         });
       }
 
