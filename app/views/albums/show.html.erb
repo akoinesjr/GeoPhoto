@@ -62,10 +62,6 @@
       locations.push([latitude, longitude])
     }
     console.log(locations)
-    //PUSH LOCATION OF EACH PHOTO FROM DATA ATTRIBUTE TO LOCATIONS
-
-
-  //  var latitude = JSON.parse(document.getElementById('photo').getAttribute('data-photo'))['latitude'];
   
     function addMarkers(){
       for (i=0; i < locations.length; i++){
@@ -98,20 +94,12 @@
     var map = new google.maps.Map(mapCanvas, mapOptions)
     var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
     var markers = []
-    var locations = []  
 
     infowindow = new google.maps.InfoWindow({
       content: "test"
     });
 
     addMarkers();
-
-
-    if(locations.length < 1){
-      locations.push([latitude, longitude]);
-      addMarkers();
-    }
-
 
   } 
 
