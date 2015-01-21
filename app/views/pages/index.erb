@@ -1,8 +1,7 @@
 <div class="jumbotron">
   <div class='container'>
     <h1>GeoPhoto</h1>
-    <p>GeoPhoto allows you to store and view your photos, organized by album.</p>
-    <p>Coming soon: Geolocation tagging, multiple file upload.</p>
+    <p>GeoPhoto allows you to upload photos tagged by location and sorted into albums.</p>
     <% if !logged_in? %>
     <%= link_to 'Sign Up', new_user_path, class: "btn btn-primary btn-lg" %>
     <%= link_to 'Sign In', login_path, class: "btn btn-primary btn-lg" %>

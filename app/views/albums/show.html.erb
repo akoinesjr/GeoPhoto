@@ -68,7 +68,8 @@
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(locations[i][0],locations[i][1]),
           map: map,
-          html: (i+1).toString()
+          html: JSON.parse(document.getElementsByClassName('photo_data')[i].getAttribute('data-photo'))['title']
+                +": "+"Lat: "+JSON.parse(document.getElementsByClassName('photo_data')[i].getAttribute('data-photo'))['latitude']+ " , Long: "+JSON.parse(document.getElementsByClassName('photo_data')[i].getAttribute('data-photo'))['longitude']
         })
         markers.push(marker)  
       }
