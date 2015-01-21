@@ -4,27 +4,125 @@
 
     <h3>Album title: <%= @album.title %></h3>
 
+    <% photo_locations = [] %>
+
     <%= link_to "Edit Album", edit_album_path, class: "btn btn-primary" %>
-      <% @album.photos.each do |photo| %>
-        <div class="photo">
-          <%= image_tag photo.image %><br>
-          <%= photo.title %><br>
-          <%= link_to "View Photo Details", album_photo_path(@album.id, photo.id) %>
-          <%= link_to "Edit Photo", edit_album_photo_path(@album.id, photo.id) %>
-        </div>
-      <% end %>
+    <% @album.photos.each do |photo| %>
+    <div class="photo">
+      <%= image_tag photo.image %><br>
+      <%= photo.title %><br>
+      <%= link_to "View Photo Details", album_photo_path(@album.id, photo.id) %>
+      <%= link_to "Edit Photo", edit_album_photo_path(@album.id, photo.id) %>
+      <%= content_tag "div", class: "photo_data", id: "photo#{photo.id}", data: {photo: photo} do %><% end %>
+      <% photo_locations.push([photo.latitude, photo.longitude]) %>
+    </div>
+    <% end %>
     
     <h3>Add Photo:</h3>
     <%= form_for [@album, @photo], html: { multipart: true } do |f| %>
-      <div class="form-group">
-        <%= f.text_field :title, placeholder: "Photo title", class: "form-control" %>
-      </div>
-        <%= f.label "Choose a file to upload" %>
-        <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
-        <%= f.submit "Add Photo", class: "btn btn-default" %>
+    <div class="form-group">
+      <%= f.text_field :title, placeholder: "Photo title", class: "form-control" %>
+    </div>
+    <%= f.label "Choose a file to upload" %>
+    <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
+    <%= f.submit "Add Photo", class: "btn btn-default" %>
 
     <% end %>
 
   </div>
-  <div class="col-md-4"></div>
+
+  <div class="col-md-4">
+   <% photo_locations.each do |location| %>
+   <% if location[0] != nil && location[1] != nil %>
+   <div id="location"><%= location[0].to_s + " , " + location[1].to_s %></div> 
+   <% else %>
+   <div id="location">No location</div>
+   <% end %>
+   <% end %>
+
+   <style>
+   #map-canvas {
+    width: 500px;
+    height: 400px;
+  }
+  </style>
+  <div id="map-canvas"></div>
+
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script>
+  var infowindow = null;
+
+  function initialize() {
+    var locations = []
+    var photoCount = document.getElementsByClassName('photo').length
+    console.log(photoCount)
+    for (i=0; i<photoCount; i++){
+      latitude = JSON.parse(document.getElementsByClassName('photo_data')[i].getAttribute('data-photo'))['latitude']
+      longitude = JSON.parse(document.getElementsByClassName('photo_data')[i].getAttribute('data-photo'))['longitude']
+      locations.push([latitude, longitude])
+    }
+    console.log(locations)
+    //PUSH LOCATION OF EACH PHOTO FROM DATA ATTRIBUTE TO LOCATIONS
+
+
+  //  var latitude = JSON.parse(document.getElementById('photo').getAttribute('data-photo'))['latitude'];
+  
+    function addMarkers(){
+      for (i=0; i < locations.length; i++){
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(locations[i][0],locations[i][1]),
+          map: map,
+          html: (i+1).toString()
+        })
+        markers.push(marker)  
+      }
+
+      for (var i=0; i < markers.length; i++){
+        var marker = markers[i];
+        google.maps.event.addListener(marker, 'click', function(){
+          infowindow.setContent(this.html);
+          infowindow.open(map, this)
+
+        });
+      }
+    }
+
+    center = new google.maps.LatLng(37.77, -122.43)
+    var mapCanvas = document.getElementById('map-canvas');
+    var mapOptions = {
+      center: center,
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    var map = new google.maps.Map(mapCanvas, mapOptions)
+    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+    var markers = []
+    var locations = []  
+
+    infowindow = new google.maps.InfoWindow({
+      content: "test"
+    });
+
+    addMarkers();
+
+
+    if(locations.length < 1){
+      locations.push([latitude, longitude]);
+      addMarkers();
+    }
+
+
+  } 
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+  console.log(document.getElementById('photo_longitude'));
+
+
+  </script>
+</div>
+</div>
+
+
 </div>
