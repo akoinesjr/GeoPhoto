@@ -1,3 +1,25 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.welcome{
+	background-image: url("http://i.imgur.com/DqvIMNw.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center center;
+	background-clip: border-box;
+	background-origin: padding-box;
+	background-size: cover;
+}
+
+.wrapper{
+	text-align: center;
+}
+
+.welcome h1{
+	font-size: 12em;
+}
+
+.welcome h3{
+	font-size: 2.5em;
+}
