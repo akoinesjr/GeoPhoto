@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  root "pages#index"
+  root "pages#welcome"
+  resources :pages, only: [:index]
+
   resources :users do
     resources :albums, only: [:index, :new, :create]
   end
