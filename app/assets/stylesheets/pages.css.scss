@@ -14,6 +14,15 @@
 
 .wrapper{
 	text-align: center;
+	margin-top: 200px;
+}
+
+.container{
+	background-color: #FFF3C2;
+	position: relative;
+	display: inline-block;
+	border-radius: 25px;
+	border: 5px solid black;
 }
 
 .welcome h1{
@@ -22,4 +31,14 @@
 
 .welcome h3{
 	font-size: 2.5em;
+}
+
+.button{
+	display: inline-block;
+	width: 250px;
+	margin: 20px;
+	padding: 20px;
+	border: 2px solid;
+	border-radius: 10px;
+	background-color: #FFE36B;
 }

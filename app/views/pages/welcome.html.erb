@@ -1,11 +1,13 @@
 <body class='welcome'>
 
 	<div class='wrapper'>
-		<h1>GeoPhoto</h1>
-		<h3>Upload your photos and view them on a map!</h3>
+		<div class='container'>
+			<h1>GeoPhoto</h1>
+			<h3>Upload your photos and view them on a map!</h3>
+				<%= link_to "Sign Up", new_user_path, class: "button" %>
+				<%= link_to "Sign In", login_path, class: "button" %>
 
-		<%= link_to "Sign Up", new_user_path %>
-		<%= link_to "Sign In", login_path %>
+		</div>
 	</div>
 
 </body>
