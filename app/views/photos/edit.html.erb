@@ -1,14 +1,17 @@
-This is the photos edit view
-<%= image_tag @photo.image %><br>
+<div class="box">
+	<%= image_tag @photo.image %><br>
 
-<%= form_for [@album, @photo] do |f| %>
-  Latitude: <%= f.number_field :latitude, :in => -85..85, :step => 0.001 %><br>
-  Longitude: <%= f.number_field :longitude, :in => -180..180, :step => 0.001 %><br>
-<%= f.submit %>
+	<%= form_for [@album, @photo] do |f| %>
+	  Latitude: <%= f.number_field :latitude, :in => -85..85, :step => 0.001 %><br>
+	  Longitude: <%= f.number_field :longitude, :in => -180..180, :step => 0.001 %><br>
+	  <h3>Edit Photo Location:</h3>
+	<div class="vert-spacing">
+		<p>Choose a new location for your photo and click "Save" to see your changes!</p>
+	</div>
+	<%= f.submit "Save", :class => 'btn' %>
 
-<% end %>
-
-Edit Photo Location:
-<br>
-
-<%= render "shared/gmap" %>
+	<% end %>
+	<div class="vert-spacing">
+		<%= render "shared/gmap" %>
+	</div>
+</div>

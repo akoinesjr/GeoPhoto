@@ -1,5 +1,3 @@
-
-
 <div class="row">
   <div class="col-md-4"></div>
   <div class="col-md-4">
@@ -7,7 +5,9 @@
     <h3><%= User.find(params[:user_id]).username %>'s albums:</h3>
     <ul class="list-group">
     <% User.find(params[:user_id]).albums.each do |album| %>
-     <li> <%= link_to album.title, album_path(id: album.id), class: "list-group-item" %></li>
+     <li> <%= link_to album_path(id: album.id), class: "list-group-item" do %>
+      <b><%=album.title%>:</b> <%=album.photos.count%> photos
+      <% end %></li>
     <% end %>
       <div class="vert-spacing">
         <%= link_to "Create a new album", new_user_album_path, class: "btn btn-primary btn-lg"  %>

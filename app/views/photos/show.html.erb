@@ -1,8 +1,5 @@
-<div class="box bg-gray">
-	<div class="box text-center">
-		<div>
-			<%= image_tag @photo.image %>
-		</div>
+<div class="box text-center">
+		<%= image_tag @photo.image %>
 		<div>
 			<% if @photo.latitude != nil && @photo.longitude != nil %>
 			<div class="vert-spacing">
@@ -11,14 +8,14 @@
 				<%= "Location unavailable." %>
 				<% end %>
 				<%= link_to edit_album_photo_path do %>
-			<div class="text-center vert-spacing">Edit Photo</div>
-			<% end %>
-			<%= content_tag "div", id: "photo", data: {photo: @photo} do %>
+				<div class="text-center vert-spacing btn btn-primary btn-lg">Edit Photo</div>
+				<% end %>
+				<%= content_tag "div", id: "photo", data: {photo: @photo} do %>
 
-			<% end %>
+				<% end %>
+			</div>
 		</div>
 	</div>
-
 	<div id="map-canvas" class="box"></div>
 
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
@@ -77,5 +74,4 @@
 	google.maps.event.addDomListener(window, 'load', initialize);
 	console.log(document.getElementById('photo_longitude'));
 	</script>
-	</div>
 </div>

@@ -1,9 +1,13 @@
-<h3>Create a new album:</h3>
+<div class="col-md-4"></div>
+<div class="col-md-4">
+	<h3>Create a new album:</h3>
 
-<%= form_for @album, url: {action: "create"}, class: "form-group" do |f| %>
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, placeholder: "Enter album title here." %>
-  </div>
-  <%= f.submit "Create album!", class: "btn btn-default" %>
-<% end %>
+	<%= form_for @album, url: {action: "create"}, class: "form-group" do |f| %>
+	  <div class="form-group">
+	    <%= f.label :title %>
+	    <%= f.text_field :title, placeholder: "Enter album title here." %>
+	  </div>
+	  <%= f.submit "Create album!", class: "btn btn-primary" %>
+	<% end %>
+</div>
+<div class="col-md-4">
