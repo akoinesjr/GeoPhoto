@@ -7,3 +7,4 @@ function addMarkers(){
 		})
 		markers.push(marker)  
 	}
+}
