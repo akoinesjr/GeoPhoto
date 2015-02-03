@@ -4,6 +4,9 @@ class PagesController < ApplicationController
   end
 
   def welcome
+  	if logged_in?
+  		redirect_to pages_path
+  	end
   	@skip_header = true
   end
 end

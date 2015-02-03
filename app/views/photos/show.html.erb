@@ -1,80 +1,81 @@
-This is the photos show view
-<%= image_tag @photo.image %><br>
+<div class="box bg-gray">
+	<div class="box text-center">
+		<div>
+			<%= image_tag @photo.image %>
+		</div>
+		<div>
+			<% if @photo.latitude != nil && @photo.longitude != nil %>
+			<div class="vert-spacing">
+				<%= "Location: Lat: " + @photo.latitude.to_s + " , Long: " + @photo.longitude.to_s %>
+				<% else %>
+				<%= "Location unavailable." %>
+				<% end %>
+				<%= link_to edit_album_photo_path do %>
+			<div class="text-center vert-spacing">Edit Photo</div>
+			<% end %>
+			<%= content_tag "div", id: "photo", data: {photo: @photo} do %>
 
-<% if @photo.latitude != nil && @photo.longitude != nil %>
-<%= "Location: Lat: " + @photo.latitude.to_s + " , Long: " + @photo.longitude.to_s %>
-<% else %>
-<%= "Location unavailable." %>
-<% end %>
-<br>
-<%= link_to "Edit Photo", edit_album_photo_path %>
-<%= content_tag "div", id: "photo", data: {photo: @photo} do %>
+			<% end %>
+		</div>
+	</div>
 
-<% end %>
+	<div id="map-canvas" class="box"></div>
 
-<div id="map-canvas"></div>
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+	<script>
+	var infowindow = null;
 
-<script src="https://maps.googleapis.com/maps/api/js"></script>
-<script>
-var infowindow = null;
+	function initialize() {
+		var latitude = JSON.parse(document.getElementById('photo').getAttribute('data-photo'))['latitude'];
+		var longitude = JSON.parse(document.getElementById('photo').getAttribute('data-photo'))['longitude'];
 
-function initialize() {
+		function addMarkers(){
+			for (i=0; i < locations.length; i++){
+				var marker = new google.maps.Marker({
+					position: new google.maps.LatLng(locations[i][0],locations[i][1]),
+					map: map,
+					html: (i+1).toString()
+				})
+				markers.push(marker)  
+			}
 
-	var latitude = JSON.parse(document.getElementById('photo').getAttribute('data-photo'))['latitude'];
-	var longitude = JSON.parse(document.getElementById('photo').getAttribute('data-photo'))['longitude'];
+			for (var i=0; i < markers.length; i++){
+				var marker = markers[i];
+				google.maps.event.addListener(marker, 'click', function(){
+					infowindow.setContent(this.html);
+					infowindow.open(map, this)
 
-	function addMarkers(){
-		for (i=0; i < locations.length; i++){
-			var marker = new google.maps.Marker({
-				position: new google.maps.LatLng(locations[i][0],locations[i][1]),
-				map: map,
-				html: (i+1).toString()
-			})
-			markers.push(marker)  
+				});
+			}
 		}
 
-		for (var i=0; i < markers.length; i++){
-			var marker = markers[i];
-			google.maps.event.addListener(marker, 'click', function(){
-				infowindow.setContent(this.html);
-				infowindow.open(map, this)
-
-			});
+		center = new google.maps.LatLng(37.77, -122.43)
+		var mapCanvas = document.getElementById('map-canvas');
+		var mapOptions = {
+			center: center,
+			zoom: 12,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
 		}
-	}
 
-	center = new google.maps.LatLng(37.77, -122.43)
-	var mapCanvas = document.getElementById('map-canvas');
-	var mapOptions = {
-		center: center,
-		zoom: 12,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	}
+		var map = new google.maps.Map(mapCanvas, mapOptions)
+		var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+		var markers = []
+		var locations = []  
 
-	var map = new google.maps.Map(mapCanvas, mapOptions)
-	var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-	var markers = []
-	var locations = []  
+		infowindow = new google.maps.InfoWindow({
+			content: "test"
+		});
 
-	infowindow = new google.maps.InfoWindow({
-		content: "test"
-	});
-
-	addMarkers();
-
-
-	if(locations.length < 1){
-		locations.push([latitude, longitude]);
 		addMarkers();
-	}
 
+		if(locations.length < 1){
+			locations.push([latitude, longitude]);
+			addMarkers();
+		}
+	} 
 
-} 
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-console.log(document.getElementById('photo_longitude'));
-
-
-</script>
+	google.maps.event.addDomListener(window, 'load', initialize);
+	console.log(document.getElementById('photo_longitude'));
+	</script>
+	</div>
 </div>

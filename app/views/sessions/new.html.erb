@@ -1,16 +1,16 @@
-<h1>Sign In</h1>
+<div class="span12 text-center">
+	<h1>Sign In</h1>
+	<hr>
+	<%= form_for(:session, url: login_path) do |f| %>
 
-<div>
-  <%= form_for(:session, url: login_path) do |f| %>
+	<%= f.label :email %>
+	<%= f.text_field :email %>
 
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+	<%= f.label :password %>
+	<%= f.password_field :password %>
 
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+	<%= f.submit "Sign In" %>
+	<% end %>
 
-    <%= f.submit "Sign In" %>
-  <% end %>
-
-  <p>New user? <%= link_to "Sign up now!", new_user_path %></p>
+	<p>New user? <%= link_to "Sign up now!", new_user_path %></p>
 </div>
