@@ -1,13 +1,27 @@
 <header>
-  <nav class='navbar navbar-inverse' role='navigation'>
-    <%= link_to 'Home', root_path, class: "navbar-brand" %>
-    <ul class='nav navbar-nav'>
-        <% if logged_in? %>
-          <li><%= link_to "Profile", current_user %></li>
-          <li><%= link_to "Albums", user_albums_path(current_user) %></li>
-          <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-          <li><%= link_to "Log Out", logout_path, method: "delete" %></li>
-        <% end %>
-      </ul>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      <%= link_to 'GeoPhoto', root_path, class: "navbar-brand" %>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><%= link_to "Profile", current_user %></li>
+          <% if logged_in? %>
+            <li><%= link_to "Albums", user_albums_path(current_user) %></li>
+            <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+            <li><%= link_to "Log Out", logout_path, method: "delete" %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </nav>
+
 </header>
