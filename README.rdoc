@@ -2,5 +2,7 @@
 
 GeoPhoto is a Rails-based photo sharing application.
 
+Users can upload photos, create albums, tag photos with locations and view them on a map.
+
 http://nameless-falls-4137.herokuapp.com
 
