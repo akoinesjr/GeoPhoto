@@ -42,13 +42,11 @@
   function initialize() {
     var locations = []
     var photoCount = document.getElementsByClassName('photo').length
-    console.log(photoCount)
     for (i=0; i<photoCount; i++){
       latitude = JSON.parse(document.getElementsByClassName('photo_data')[i].getAttribute('data-photo'))['latitude']
       longitude = JSON.parse(document.getElementsByClassName('photo_data')[i].getAttribute('data-photo'))['longitude']
       locations.push([latitude, longitude])
     }
-    console.log(locations)
 
     function addMarkers(){
       for (i=0; i < locations.length; i++){
@@ -93,9 +91,6 @@
   $(document).ready(function(){
     initialize();
   });
-
-  console.log(document.getElementById('photo_longitude'));
-
 
   </script>
 </div>

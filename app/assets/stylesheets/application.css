@@ -47,7 +47,7 @@
   background-color: lightblue;
   margin-top: -20px;
   position: relative;
-  background-image: url("");
+  background-image: url("http://i.imgur.com/fdqNxUy.jpg");
 }
 
 #banner-header{
@@ -80,4 +80,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.main-container{
+  background-color: grey;
+  margin-top: -20px;
+  padding: 20px;
 }

@@ -33,7 +33,7 @@
 					map: map,
 					html: (i+1).toString()
 				})
-				markers.push(marker)  
+				markers.push(marker)
 			}
 
 			for (var i=0; i < markers.length; i++){
@@ -57,7 +57,7 @@
 		var map = new google.maps.Map(mapCanvas, mapOptions)
 		var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 		var markers = []
-		var locations = []  
+		var locations = []
 
 		infowindow = new google.maps.InfoWindow({
 			content: "test"
@@ -69,7 +69,7 @@
 			locations.push([latitude, longitude]);
 			addMarkers();
 		}
-	} 
+	}
 
 	  $(document).ready(function(){
     initialize();
