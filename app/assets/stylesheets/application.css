@@ -46,10 +46,20 @@
   color: white;
   background-color: black;
   position: absolute;
-  top: 75%;
-  left: 25%;
+  top: 45%;
+  left: 15%;
   padding: 5px;
 }
+
+#banner-header2{
+  color: white;
+  background-color: black;
+  position: absolute;
+  top: 65%;
+  left: 15%;
+  padding: 5px;
+}
+
 
 .no-whitespace{
   padding: 0px;
