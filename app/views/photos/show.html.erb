@@ -1,4 +1,4 @@
-<div class="box text-center">
+<div class="main-container text-center">
 		<%= image_tag @photo.image %>
 		<div>
 			<% if @photo.latitude != nil && @photo.longitude != nil %>
@@ -15,8 +15,7 @@
 				<% end %>
 			</div>
 		</div>
-	</div>
-	<div id="map-canvas" class="box"></div>
+	<div id="map-canvas"></div>
 
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
 	<script>
@@ -77,4 +76,5 @@
 
 	console.log(document.getElementById('photo_longitude'));
 	</script>
+</div>
 </div>
