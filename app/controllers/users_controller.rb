@@ -13,6 +13,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+
   def show
     @user = User.find(params[:id])
     @albums=@user.albums
@@ -22,6 +27,12 @@ class UsersController < ApplicationController
         @photos.push(photo)
       end
     end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to '/'
   end
 
 private
