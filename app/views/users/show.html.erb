@@ -1,23 +1,10 @@
-  <div id="banner-container">
-    <h3 id="banner-header">Welcome, <%= @user.username %>.</h3>
+<%= render "layouts/banner" %>
+<div class="photo-container">
+  <% @photos.each do |photo| %>
+  <div class="photo-box">
+    <%= link_to (image_tag photo.image), edit_album_photo_path(photo.album.id, photo.id) %><br>
+    Description: <%= photo.title %>
+    <%= content_tag "div", class: "photo_data", id: "photo#{photo.id}", data: {photo: photo} do %><% end %>
   </div>
-  <div class="text-center">
-    <hr>
-    <div class="form-group">
-      <%= link_to "View Albums", user_albums_path(user_id: @user.id), class: "btn btn-primary btn-lg" %>
-    </div>
-      <div class="form-group">
-        <%= link_to "Create a new album", new_user_album_path(user_id: @user.id), class: "btn btn-primary btn-lg"  %>
-      </div>
-  </div>
-
-  <h3>Your Photos</h3>
-  <div class="photo-container">
-    <% @photos.each do |photo| %>
-      <div class="photo-box">
-      <%= link_to (image_tag photo.image), edit_album_photo_path(photo.album.id, photo.id) %><br>
-      Description: <%= photo.title %>
-      <%= content_tag "div", class: "photo_data", id: "photo#{photo.id}", data: {photo: photo} do %><% end %>
-      </div>
-    <% end %>
-  </div>
+  <% end %>
+</div>

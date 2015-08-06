@@ -49,7 +49,7 @@
       locations.push([latitude, longitude])
     }
     console.log(locations)
-  
+
     function addMarkers(){
       for (i=0; i < locations.length; i++){
         var marker = new google.maps.Marker({
@@ -58,7 +58,7 @@
           html: JSON.parse(document.getElementsByClassName('photo_data')[i].getAttribute('data-photo'))['title']
                 +": "+"Lat: "+JSON.parse(document.getElementsByClassName('photo_data')[i].getAttribute('data-photo'))['latitude']+ " , Long: "+JSON.parse(document.getElementsByClassName('photo_data')[i].getAttribute('data-photo'))['longitude']
         })
-        markers.push(marker)  
+        markers.push(marker)
       }
 
       for (var i=0; i < markers.length; i++){
@@ -89,7 +89,7 @@
 
     addMarkers();
 
-  } 
+  }
   $(document).ready(function(){
     initialize();
   });

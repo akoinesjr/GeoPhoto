@@ -1,6 +1,7 @@
 class AlbumsController < ApplicationController
   def index
-    @albums=User.find(params[:user_id]).albums
+    @user = User.find(params[:user_id])
+    @albums=@user.albums
   end
 
   def new
