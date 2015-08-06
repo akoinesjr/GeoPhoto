@@ -50,11 +50,16 @@
   background-image: url("");
 }
 
-h3{
+#banner-header{
   color: white;
   background-color: black;
   position: absolute;
   top: 75%;
   left: 25%;
   padding: 5px;
+}
+
+.no-whitespace{
+  padding: 0px;
+  margin-bottom: -20px;
 }

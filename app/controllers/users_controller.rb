@@ -15,6 +15,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @albums=@user.albums
+    @photos = []
+    @albums.each do |album|
+      album.photos.each do |photo|
+        @photos.push(photo)
+      end
+    end
   end
 
 private
