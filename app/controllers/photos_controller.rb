@@ -15,7 +15,7 @@ class PhotosController < ApplicationController
     @album = Album.find(@photo.album)
   end
 
-  def update     
+  def update
     @photo = Photo.find(params[:id])
     puts @photo
 
@@ -40,7 +40,7 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
     @photo.destroy
     flash[:success] = "Photo deleted!"
-    redirect_to album_photos_path(@photo.album_id)
+    redirect_to album_path(@photo.album_id)
   end
 
   private

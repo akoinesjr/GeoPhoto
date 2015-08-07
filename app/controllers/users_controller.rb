@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @album = Album.find(params[:album_id])
     @user = User.find(params[:id])
   end
 
