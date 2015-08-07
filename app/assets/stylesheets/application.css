@@ -94,3 +94,25 @@
 li{
   list-style-type: none;
 }
+
+#splash{
+  background-image: url("http://i.imgur.com/mgdaM1X.jpg");
+  margin-top: -20px;
+  min-height: 500px;
+  position: relative;
+  display: flex;
+}
+
+#splash-content{
+  align-self: center;
+}
+
+.splash-text{
+  background-color: black;
+  color: white;
+  display: inline-block;
+}
+
+.big-header{
+  font-size: 4em;
+}
