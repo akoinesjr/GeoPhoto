@@ -9,7 +9,6 @@
     <%= link_to 'Sign Up', new_user_path, class: "btn btn-primary btn-lg" %>
     <%= link_to 'Sign In', login_path, class: "btn btn-primary btn-lg" %>
     <% else %>
-    <p class="splash-text">What's up, <%= current_user.username %>? Welcome to GeoPhoto!</p>
     <%= link_to "View Albums", user_albums_path(user_id: current_user.id), class: "btn btn-primary btn-lg" %>
     <%= link_to "Create a new album", new_user_album_path(user_id: current_user.id), class: "btn btn-primary btn-lg"  %>
     </div>
