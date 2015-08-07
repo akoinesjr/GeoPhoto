@@ -100,11 +100,11 @@ li{
   margin-top: -20px;
   min-height: 500px;
   position: relative;
-  display: flex;
 }
 
 #splash-content{
-  align-self: center;
+  position: absolute;
+  top: 30%;
 }
 
 .splash-text{
@@ -113,6 +113,15 @@ li{
   display: inline-block;
 }
 
+#splash-links{
+  text-align: center;
+  color: white;
+}
+
 .big-header{
   font-size: 4em;
+}
+
+a:visited{
+  color: white;
 }
