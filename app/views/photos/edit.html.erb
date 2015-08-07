@@ -11,7 +11,8 @@
 	<div class="vert-spacing">
 		<%= render "shared/gmap" %>
 	</div>
-	<%= f.submit "Save", :class => 'btn' %>
+	<%= f.submit "Save", :class => 'btn btn-primary' %>
 	<% end %>
-	<%= link_to "Delete", album_photo_path(@album, @photo), method: :delete, data: { confirm: "Are you sure you want to delete this photo?" } %>
+	<br>
+	<%= link_to "Delete", album_photo_path(@album, @photo), method: :delete, data: { confirm: "Are you sure you want to delete this photo?" }, :class => 'btn btn-primary' %>
 </div>
