@@ -2,14 +2,11 @@
 	<h1>Sign In</h1>
 	<hr>
 	<%= form_for(:session, url: login_path) do |f| %>
-
-	<%= f.label :email %>
-	<%= f.text_field :email %>
-
-	<%= f.label :password %>
-	<%= f.password_field :password %>
-
-	<%= f.submit "Sign In" %>
+		<%= f.label :email %>
+		<%= f.text_field :email, class: "form-control sign-up-input" %>
+		<%= f.label :password %>
+		<%= f.password_field :password, class: "form-control sign-up-input" %>
+	<%= f.submit "Sign In", class: "btn btn-default" %>
 	<% end %>
 
 	<p>New user? <%= link_to "Sign up now!", new_user_path %></p>
