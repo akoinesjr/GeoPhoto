@@ -7,11 +7,22 @@
 	</div>
 	<div class="photo-container">
 	  <% @photos.each do |photo| %>
-	  <div class="photo-box">
-	    <%= link_to (image_tag photo.image), edit_album_photo_path(photo.album.id, photo.id) %><br>
-	    Description: <%= photo.title %>
-	    <%= content_tag "div", class: "photo_data", id: "photo#{photo.id}", data: {photo: photo} do %><% end %>
+	  <div class="photo-box" id="<%=photo.id%>">
+	    <%= link_to (image_tag photo.image), edit_album_photo_path(photo.album.id, photo.id) %>
+	    <div class="photo-desc" >
+	    	<%= photo.title %>
+	    	<%= content_tag "div", class: "photo_data", id: "photo#{photo.id}", data: {photo: photo} do %><% end %>
+	  	</div>
 	  </div>
 	  <% end %>
 	</div>
 </div>
+
+<script>
+$(".photo-box").mouseover(function(){
+	$(this).children().show();
+})
+$(".photo-box").mouseout(function(){
+	$(this).children().last().hide();
+})
+</script>

@@ -70,12 +70,12 @@
   background-color: #FFFFF6;
   padding: 1em;
   font-family: verdana;
-  height: 200px;
+  height: 250px;
+  width: 250px;
   margin: 2px;
   border: 2px solid black;
   border-radius: 4px;
   flex: 1 1 1;
-  width: 250px;
   text-align: center;
 }
 
@@ -124,4 +124,12 @@ li{
 
 a:visited{
   color: white;
+}
+
+.photo-desc{
+  display: none;
+  background-color: black;
+  color: white;
+  width: 200px;
+  margin: auto;
 }
